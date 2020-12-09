@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="176dp"
+    android:background="#badc57"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:fontFamily="serif"
+        android:id="@+id/user_name"
+        android:background="@drawable/buytf"
+        android:layout_height="70dp"
+        android:layout_gravity="center"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="www.buytf.com"
+        android:textSize="14sp"
+        app:fontFamily="serif" />
+
+
+</LinearLayout>

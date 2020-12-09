@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Placeorder">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbar"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2.5">
+
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:fontFamily="serif"
+                android:layout_margin="8dp"
+                android:textSize="28sp"
+                android:background="@drawable/buytf"
+                android:gravity="center"
+                android:id="@+id/name"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="17dp"
+                android:background="@drawable/search"/>
+
+            <ImageView
+                android:id="@+id/basket"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="50dp"
+                android:layout_margin="17dp"
+                android:background="@drawable/notification"/>
+
+
+
+
+        </LinearLayout>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Add Address"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                />
+
+            <EditText
+                android:id="@+id/pincode"
+                android:hint="Pincode*"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <EditText
+            android:id="@+id/houseno"
+            android:hint="House No., Building name*"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+            <EditText
+                android:id="@+id/roadname"
+                android:hint="Road Name,Area Colony*"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/city"
+                    android:hint="City *"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:id="@+id/state"
+                    android:hint="State*"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/landmark"
+                android:hint="Landmark*"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <View
+                android:background="#DAE0E2"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"/>
+
+            <EditText
+                android:id="@+id/username"
+                android:hint="Name*"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <EditText
+                android:id="@+id/usermobile"
+                android:hint="10-digit mobile number*"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <EditText
+                android:id="@+id/phonenumber"
+                android:hint="Alternate Phone Number"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <View
+                android:background="#DAE0E2"
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="4dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Order Details"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                />
+
+            <TextView
+                android:id="@+id/totalcost"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Total Cost : 30/-"
+                android:textAlignment="textStart"
+                android:layout_margin="8dp"
+                android:textColor="#2B2B52"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                />
+
+            <View
+                android:background="#DAE0E2"
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="4dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Select Payment Method"
+                android:gravity="center"
+                android:layout_margin="8dp"
+                android:textSize="30sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                />
+
+            <Spinner
+                android:id="@+id/payment"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+
+            <Button
+                android:id="@+id/confirmorder"
+                android:text="Place Order"
+                android:background="#badc57"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+</RelativeLayout>
