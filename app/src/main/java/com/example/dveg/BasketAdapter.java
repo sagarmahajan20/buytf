@@ -24,6 +24,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -37,13 +39,14 @@ public class BasketAdapter extends FirestoreRecyclerAdapter<BasketModel,BasketAd
     String useremail = Login.getData();
     FirebaseFirestore dbadd1;
     FirebaseFirestore dbadd2;
+    FirebaseFirestore fbgeta;
 
     public BasketAdapter(@NonNull FirestoreRecyclerOptions<BasketModel> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull BasketHolder holder, int position, @NonNull final BasketModel model) {
+    protected void onBindViewHolder(@NonNull final BasketHolder holder, int position, @NonNull final BasketModel model) {
         holder.p_rs.setText("Rs: "+model.getP_rs());
         //holder.p_mrp.setText("MRP: "+model.getP_mrp());
         holder.product_name.setText(model.getProduct_name());
@@ -53,8 +56,35 @@ public class BasketAdapter extends FirestoreRecyclerAdapter<BasketModel,BasketAd
                 .placeholder(R.drawable.logo1)
                 .into(holder.p_urlimage);
 
+        fbgeta = FirebaseFirestore.getInstance();
 
-        holder.v.setOnClickListener(new View.OnClickListener() {
+        String string = useremail.replaceAll("([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)", "");
+        String target = ".";
+        String replacement = "a";
+        final String processed = useremail.replace(target, replacement);
+
+
+        fbgeta.collection("vegetables")
+                .whereEqualTo("p_id",model.getP_id())
+                .whereEqualTo(processed+".cart","true")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String poq = (String) document.get(processed+".quant").toString();
+                                holder.current_quant.setText(poq+" Kg");
+                            }
+                        } else {
+                            holder.current_quant.setText("0 Kg");
+                        }
+                    }
+                });
+
+
+
+        holder.updatecart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v)
             {
@@ -66,7 +96,7 @@ public class BasketAdapter extends FirestoreRecyclerAdapter<BasketModel,BasketAd
                 String string = useremail.replaceAll("([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)", "");
                 String target = ".";
                 String replacement = "a";
-                String processed = useremail.replace(target, replacement);
+                final String processed = useremail.replace(target, replacement);
 // Set the "isCapital" field of the city 'DC'
                 updatecart
                         .update(processed,"1",
@@ -82,6 +112,24 @@ public class BasketAdapter extends FirestoreRecyclerAdapter<BasketModel,BasketAd
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(v.getContext(),"Added To cart",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                dbadd1.collection("vegetables")
+                        .whereEqualTo("p_id",model.getP_id())
+                        .whereEqualTo(processed+".cart","true")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        String poq = (String) document.get(processed+".quant").toString();
+                                        holder.current_quant.setText(poq+" Kg");
+                                    }
+                                } else {
+                                    holder.current_quant.setText("0 Kg");
+                                }
                             }
                         });
 
@@ -124,7 +172,23 @@ public class BasketAdapter extends FirestoreRecyclerAdapter<BasketModel,BasketAd
                             }
                         });
 
-
+                dbadd2.collection("vegetables")
+                        .whereEqualTo("p_id",model.getP_id())
+                        .whereEqualTo(processed+".cart","true")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        String poq = (String) document.get(processed+".quant").toString();
+                                        holder.current_quant.setText(poq+" Kg");
+                                    }
+                                } else {
+                                    holder.current_quant.setText("0 Kg");
+                                }
+                            }
+                        });
 
 
 
@@ -156,6 +220,8 @@ public class BasketAdapter extends FirestoreRecyclerAdapter<BasketModel,BasketAd
         private TextView p_rs;
         private TextView product_name;
         private ImageView p_urlimage;
+
+        private TextView current_quant;
         Button updatecart;
         Button deletebasketitem;
         Spinner spin;
@@ -165,6 +231,7 @@ public class BasketAdapter extends FirestoreRecyclerAdapter<BasketModel,BasketAd
             super(itemView);
 
             //p_mrp = itemView.findViewById(R.id.p_mrp);
+            current_quant = itemView.findViewById(R.id.current_quant);
             p_rs = itemView.findViewById(R.id.p_rs);
             spin = (Spinner) itemView.findViewById(R.id.spinner1);
             product_name = itemView.findViewById(R.id.product_name);
@@ -172,6 +239,7 @@ public class BasketAdapter extends FirestoreRecyclerAdapter<BasketModel,BasketAd
             updatecart = itemView.findViewById(R.id.updatecart);
             deletebasketitem = itemView.findViewById(R.id.deletebasketitem);
             v = itemView;
+
 
 
 

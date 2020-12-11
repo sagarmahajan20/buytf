@@ -56,12 +56,14 @@
 
 
                 <TextView
-                    android:id="@+id/p_mrp"
+                    android:id="@+id/current_quant"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fontFamily="serif"
                     android:layout_weight="1"
-                    android:text="MRP"/>
+                    android:text="0 Kg"
+                    android:textSize="20sp"
+                    android:layout_margin="4dp"
+                    android:gravity="center_vertical"/>
 
 
                 <TextView
