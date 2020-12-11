@@ -1,2 +1,1 @@
-# dveg
-# buytf
+BUY THROUGH FARMER
