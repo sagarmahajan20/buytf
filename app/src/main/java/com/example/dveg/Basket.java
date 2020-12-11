@@ -58,6 +58,7 @@ public class Basket extends AppCompatActivity implements NavigationView.OnNaviga
     Toolbar toolbar;
     TextView totalrs;
     TextView totalmrp;
+    Double total;
 
 
 
@@ -68,7 +69,7 @@ public class Basket extends AppCompatActivity implements NavigationView.OnNaviga
         setContentView(R.layout.activity_basket);
 
 
-        totalmrp = findViewById(R.id.totalmrp);
+        //totalmrp = findViewById(R.id.totalmrp);
         totalrs = findViewById(R.id.totalrs);
 
         //nav start
@@ -124,7 +125,7 @@ public class Basket extends AppCompatActivity implements NavigationView.OnNaviga
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    Double total = 0.0;
+                    total = 0.0;
                     Double total1 = 0.0;
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String str = document.getString("p_rs");
@@ -137,14 +138,12 @@ public class Basket extends AppCompatActivity implements NavigationView.OnNaviga
                         String str1 = document.getString("p_mrp");
                         Double mrp1 = document.getDouble(processed+".quant");
                         Double itemCost1 = Double.parseDouble(str);
-                       // int realmrp1 = Integer.parseInt(mrp);
                         total1 =total1+ itemCost1*mrp1;
 
 
                     }
                     Log.d("TAG", String.valueOf(total));
                     totalrs.setText(String.valueOf("Rs. "+total));
-                    totalmrp.setText(String.valueOf("MRP "+total1));
                 }
             }
         });
@@ -160,7 +159,6 @@ public class Basket extends AppCompatActivity implements NavigationView.OnNaviga
                 //firestore user add to order document
 
                 Intent gotocheck = new Intent(Basket.this,Placeorder.class);
-                //gotocheck.putExtra("totalmrp",total1);
                 startActivity(gotocheck);
 
 

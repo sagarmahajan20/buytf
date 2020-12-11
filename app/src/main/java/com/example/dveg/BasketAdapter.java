@@ -23,12 +23,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SetOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -50,11 +45,12 @@ public class BasketAdapter extends FirestoreRecyclerAdapter<BasketModel,BasketAd
     @Override
     protected void onBindViewHolder(@NonNull BasketHolder holder, int position, @NonNull final BasketModel model) {
         holder.p_rs.setText("Rs: "+model.getP_rs());
-        holder.p_mrp.setText("MRP: "+model.getP_mrp());
+        //holder.p_mrp.setText("MRP: "+model.getP_mrp());
         holder.product_name.setText(model.getProduct_name());
 
         Picasso.get()
                 .load(model.getP_urlimage())
+                .placeholder(R.drawable.logo1)
                 .into(holder.p_urlimage);
 
 
@@ -168,7 +164,7 @@ public class BasketAdapter extends FirestoreRecyclerAdapter<BasketModel,BasketAd
         public BasketHolder(@NonNull View itemView) {
             super(itemView);
 
-            p_mrp = itemView.findViewById(R.id.p_mrp);
+            //p_mrp = itemView.findViewById(R.id.p_mrp);
             p_rs = itemView.findViewById(R.id.p_rs);
             spin = (Spinner) itemView.findViewById(R.id.spinner1);
             product_name = itemView.findViewById(R.id.product_name);

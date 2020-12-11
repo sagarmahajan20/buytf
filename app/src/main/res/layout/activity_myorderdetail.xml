@@ -7,17 +7,112 @@
     tools:context=".Myorderdetail">
 
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbar"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2.5">
+
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:fontFamily="serif"
+                android:layout_margin="8dp"
+                android:textSize="28sp"
+                android:background="@drawable/buytf"
+                android:gravity="center"/>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="60dp">
 
         <TextView
-            android:id="@+id/nameofdata"
-            android:layout_marginTop="100dp"
+            android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text=""/>
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:text="Sagar Mahajan"/>
+
+        <TextView
+            android:id="@+id/mobile"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:text="7498232606"/>
+
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:text="address"/>
+
+
+        <TextView
+            android:id="@+id/totalcostitem"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:text="Sagar Mahajan"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:weightSum="2">
+
+
+            <ListView
+                android:id="@+id/listview"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+            <ListView
+                android:id="@+id/listview1"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+
+        </LinearLayout>
+
 
 
 

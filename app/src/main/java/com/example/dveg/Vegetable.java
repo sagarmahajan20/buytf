@@ -64,7 +64,11 @@ public class Vegetable extends AppCompatActivity
             }
         });
 
-        Query query = db.collection("vegetables");
+        Intent vpd = getIntent();
+        String collection;
+        collection = vpd.getStringExtra("type");
+
+        Query query = db.collection("vegetables").whereEqualTo("type",collection);
 
         FirestoreRecyclerOptions<Modeladdproduct> options = new FirestoreRecyclerOptions.Builder<Modeladdproduct>()
                 .setQuery(query,Modeladdproduct.class)

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageView basket;
     TextView textView;
     CarouselView carouselView;
-    ImageView vegetable;
+    ImageView vegetable,fruit,herbs, flower,viewall,seasonal;
     LinearLayout username;
     TextView user_name;
 
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         return true;
 
                     case R.id.basket:
-                        startActivity(new Intent(getApplicationContext(), Basket.class));
+                        startActivity(new Intent(getApplicationContext(), chatbot.class));
                         overridePendingTransition(0,0);
                         return true;
 
@@ -82,11 +82,69 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //
         vegetable = findViewById(R.id.vegetable);
+
         vegetable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,Vegetable.class);
-                startActivity(i);
+                Intent vi = new Intent(MainActivity.this,Vegetable.class);
+                vi.putExtra("type","vegetable");
+                startActivity(vi);
+                CustomIntent.customType(MainActivity.this, "left-to-right");
+            }
+        });
+
+        herbs = findViewById(R.id.herbs);
+        herbs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent f = new Intent(MainActivity.this,Vegetable.class);
+                f.putExtra("type","herbs");
+                startActivity(f);
+                CustomIntent.customType(MainActivity.this, "left-to-right");
+            }
+        });
+
+        flower = findViewById(R.id.flower);
+        flower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent f = new Intent(MainActivity.this,Vegetable.class);
+                f.putExtra("type","flower");
+                startActivity(f);
+                CustomIntent.customType(MainActivity.this, "left-to-right");
+            }
+        });
+
+        viewall = findViewById(R.id.viewall);
+        viewall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent f = new Intent(MainActivity.this,Vegetable.class);
+                f.putExtra("type","viewall");
+                startActivity(f);
+                CustomIntent.customType(MainActivity.this, "left-to-right");
+            }
+        });
+
+
+        seasonal = findViewById(R.id.seasonal);
+        seasonal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent f = new Intent(MainActivity.this,Vegetable.class);
+                f.putExtra("type","seasonal");
+                startActivity(f);
+                CustomIntent.customType(MainActivity.this, "left-to-right");
+            }
+        });
+
+        fruit = findViewById(R.id.fruit);
+        fruit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent f = new Intent(MainActivity.this,Vegetable.class);
+                f.putExtra("type","fruit");
+                startActivity(f);
                 CustomIntent.customType(MainActivity.this, "left-to-right");
             }
         });
@@ -207,35 +265,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    /*bottomnav
-    BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.home);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-            switch (menuItem.getItemId())
-            {
-                case R.id.home:
-                    return true;
-
-                case R.id.sell:
-                    startActivity(new Intent(getApplicationContext(),Sell.class));
-                    overridePendingTransition(0,0);
-                    return true;
-
-                case R.id.rent:
-                    startActivity(new Intent(getApplicationContext(), Rent.class));
-                    overridePendingTransition(0,0);
-                    return true;
-
-            }
-
-            return false;
-        }
-    });
-    */
-    //bottomend
 
 
     @Override

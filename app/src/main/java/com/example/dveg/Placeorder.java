@@ -9,8 +9,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,13 +36,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Placeorder extends AppCompatActivity {
+public class Placeorder extends AppCompatActivity implements
+        AdapterView.OnItemSelectedListener  {
 
     EditText pincode,houseno, roadname,city,state,landmark,username,usermobile,phonenumber;
     TextView totalcost;
     Button confirmorder;
     FirebaseFirestore co;
     final String useremail = Login.getData();
+    String[] country = { "Cash On Delivery"};
+    FirebaseFirestore totalc;
+    Double total = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,8 +65,18 @@ public class Placeorder extends AppCompatActivity {
         usermobile = findViewById(R.id.usermobile);
         phonenumber = findViewById(R.id.phonenumber);
 
+        Spinner spin = findViewById(R.id.payment);
+        spin.setOnItemSelectedListener(this);
+
+        //Creating the ArrayAdapter instance having the country list
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,country);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spin.setAdapter(aa);
+
 
         totalcost = findViewById(R.id.totalcost);
+
 
         confirmorder = findViewById(R.id.confirmorder);
         co = FirebaseFirestore.getInstance();
@@ -69,7 +86,33 @@ public class Placeorder extends AppCompatActivity {
         String replacement = "a";
         final String processed = useremail.replace(target, replacement);
 
+//calculate total
+        totalc = FirebaseFirestore.getInstance();
+        Query query1 = totalc.collection("vegetables").whereEqualTo(processed+".cart","true");
+        query1.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
 
+                    Double total1 = 0.0;
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        String str = document.getString("p_rs");
+                        Double mrp = document.getDouble(processed+".quant");
+                        Double itemCost = Double.parseDouble(str);
+                        //int realmrp = Integer.parseInt(mrp);
+                        total =total+ itemCost*mrp;
+
+
+
+
+
+                    }
+                    Log.d("TAG", String.valueOf(total));
+                    totalcost.setText(String.valueOf(total));
+                }
+            }
+        });
+        //calculate total end
 
         confirmorder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +177,13 @@ public class Placeorder extends AppCompatActivity {
                 String replacement = "a";
                 final String processed = useremail.replace(target, replacement);
 
+                Intent gotocheck = getIntent();
+                String totalrs = gotocheck.getStringExtra("totalrs");
                 final String id = co.collection("orders").document().getId();
+
+
+
+
 
                 final String idd = "1";
                 final Map<String, Object> city = new HashMap<>();
@@ -148,7 +197,7 @@ public class Placeorder extends AppCompatActivity {
                 city.put("email", useremail);
                 city.put("phonenumber", phonenumber1);
                 city.put("date", new Timestamp(new Date()));
-                city.put("total", "101");
+                city.put("total", String.valueOf(total));
                 city.put("deleviredstatus", "delevired");
 
                 //city.put("country", "USA");
@@ -230,23 +279,6 @@ public class Placeorder extends AppCompatActivity {
             });
 
 
-// Set the "isCapital" field of the city 'DC'
-               /* updatecart
-                        .set(processed,"1",
-                                processed+".cart","false",
-                                processed+".confirmorder", "true")
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(getApplicationContext(),"Order placed Successfully",Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getApplicationContext(),"order placed failed",Toast.LENGTH_SHORT).show();
-                            }
-                        });*/
 
 
 
@@ -257,6 +289,16 @@ public class Placeorder extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(getApplicationContext(),country[position] +"Selected" , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

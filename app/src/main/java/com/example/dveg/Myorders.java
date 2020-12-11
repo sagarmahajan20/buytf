@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Spinner;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -18,12 +19,16 @@ public class Myorders extends AppCompatActivity {
     FirebaseFirestore myorder;
     FirestoreRecyclerAdapter adapter;
     final String useremail = Login.getData();
+    Spinner payment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myorders);
+
+
 
 
         String string = useremail.replaceAll("([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)", "");
@@ -35,6 +40,7 @@ public class Myorders extends AppCompatActivity {
 
         myorder = FirebaseFirestore.getInstance();
         Query query = myorder.collection("orders").whereEqualTo("email",useremail);
+
 
         FirestoreRecyclerOptions<MyorderModel> options = new FirestoreRecyclerOptions.Builder<MyorderModel>()
                 .setQuery(query,MyorderModel.class)

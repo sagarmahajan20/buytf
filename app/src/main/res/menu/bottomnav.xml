@@ -10,8 +10,8 @@
 
     <item
         android:id="@+id/basket"
-        android:title="Basket"
-        android:icon="@drawable/cart"/>
+        android:title="Chat"
+        android:icon="@drawable/mike"/>
 
 
     <item

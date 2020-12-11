@@ -24,10 +24,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -41,6 +46,7 @@ public class VegatableAdapter extends FirestoreRecyclerAdapter<Modeladdproduct,V
 {
     String useremail = Login.getData();
     FirebaseFirestore dbadd;
+    FirebaseFirestore ffget;
     String[] amount = { "India", "USA", "China", "Japan", "Other"};
     int quant12 = 0;
 
@@ -51,22 +57,44 @@ public class VegatableAdapter extends FirestoreRecyclerAdapter<Modeladdproduct,V
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull VegatableAdapter.VegatableHolder holder, int position, @NonNull final Modeladdproduct model) {
+    protected void onBindViewHolder(@NonNull final VegatableAdapter.VegatableHolder holder, int position, @NonNull final Modeladdproduct model) {
 
         holder.product_name.setText(model.getProduct_name());
-        holder.p_mrp.setText("MRP: "+model.getP_mrp());
+        //holder.p_mrp.setText("MRP: "+model.getP_mrp());
         holder.p_rs.setText("Rs: "+model.getP_rs());
         Picasso.get()
                 .load(model.getP_urlimage())
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.logo1)
                 .into(holder.p_urlimage);
 
+        String string = useremail.replaceAll("([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)", "");
+        String target = ".";
+        String replacement = "a";
+        final String processed = useremail.replace(target, replacement);
 
+        ffget = FirebaseFirestore.getInstance();
 
+        //Query getquant = ffget.collection("vegetables").whereEqualTo("p_id",model.getP_id()).whereEqualTo(processed+".cart","true");
 
+        ffget.collection("vegetables")
+                .whereEqualTo("p_id",model.getP_id())
+                .whereEqualTo(processed+".cart","true")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String poq = (String) document.get(processed+".quant").toString();
+                                holder.current_quant.setText(poq+" Kg");
+                            }
+                        } else {
+                            holder.current_quant.setText("0 Kg");
+                        }
+                    }
+                });
 
-
-        holder.v.setOnClickListener(new View.OnClickListener() {
+        holder.addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v)
             {
@@ -78,7 +106,7 @@ public class VegatableAdapter extends FirestoreRecyclerAdapter<Modeladdproduct,V
                 String string = useremail.replaceAll("([^.@\\s]+)(\\.[^.@\\s]+)*@([^.@\\s]+\\.)+([^.@\\s]+)", "");
                 String target = ".";
                 String replacement = "a";
-                String processed = useremail.replace(target, replacement);
+                final String processed = useremail.replace(target, replacement);
 // Set the "isCapital" field of the city 'DC'
                 updatecart
                         .update(processed,"1",
@@ -99,7 +127,23 @@ public class VegatableAdapter extends FirestoreRecyclerAdapter<Modeladdproduct,V
 
 
 
-
+                dbadd.collection("vegetables")
+                        .whereEqualTo("p_id",model.getP_id())
+                        .whereEqualTo(processed+".cart","true")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        String poq = (String) document.get(processed+".quant").toString();
+                                        holder.current_quant.setText(poq+" Kg");
+                                    }
+                                } else {
+                                    holder.current_quant.setText("0 Kg");
+                                }
+                            }
+                        });
 
 
             }
@@ -124,7 +168,7 @@ public class VegatableAdapter extends FirestoreRecyclerAdapter<Modeladdproduct,V
         private TextView p_mrp;
         private TextView p_rs;
         private ImageView p_urlimage;
-        private TextView product_name;
+        private TextView product_name,current_quant;
         Button addtocart;
         View v;
         Spinner spin;
@@ -133,9 +177,10 @@ public class VegatableAdapter extends FirestoreRecyclerAdapter<Modeladdproduct,V
             super(itemView);
 
             product_name = itemView.findViewById(R.id.product_name);
-            p_mrp = itemView.findViewById(R.id.p_mrp);
+            //p_mrp = itemView.findViewById(R.id.p_mrp);
             p_rs = itemView.findViewById(R.id.p_rs);
             p_urlimage = itemView.findViewById(R.id.p_urlimage);
+            current_quant = itemView.findViewById(R.id.current_quant);
             spin = (Spinner) itemView.findViewById(R.id.spinner);
             addtocart = itemView.findViewById(R.id.addtocart);
             v = itemView;

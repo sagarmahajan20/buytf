@@ -50,10 +50,8 @@
                 android:fontFamily="sans-serif-condensed-medium"
                 android:textSize="28sp" />
 
-
-
             <TextView
-                android:id="@+id/p_mrp"
+                android:id="@+id/p_rs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="serif"
@@ -61,64 +59,78 @@
                 android:text="MRP"/>
 
 
-                <TextView
-                    android:id="@+id/p_rs"
-                    android:layout_width="match_parent"
-                    android:fontFamily="serif"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Rs"
-                    android:textSize="15sp"/>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rectangle"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1">
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:prompt="@string/app_name"
+                        android:textSize="18sp"
+                        android:autofillHints="1"
+                        android:fontFamily="serif"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:text="Kg"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"/>
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:weightSum="5">
+                android:layout_weight="1"
+                android:weightSum="2">
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:layout_weight="2"
-                   android:weightSum="2">
-
-                   <Spinner
-                       android:id="@+id/spinner"
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:prompt="@string/app_name"
-                       android:textSize="18sp"
-                       android:layout_marginEnd="5dp"
-                       android:fontFamily="serif"
-                       android:layout_weight="1"/>
-
-                   <TextView
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:layout_weight="1"
-                       android:layout_marginEnd="10dp"
-                       android:text="Kg"
-                       android:textSize="20sp"
-                       android:fontFamily="sans-serif"
-                       android:gravity="center"/>
-
-
-
-               </LinearLayout>
+                <TextView
+                    android:id="@+id/current_quant"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0 Kg"
+                    android:textSize="20sp"
+                    android:layout_margin="4dp"
+                    android:gravity="center_vertical"/>
 
                 <Button
                     android:id="@+id/addtocart"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="serif"
                     android:gravity="center"
                     android:background="@drawable/red_button"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="ADD"/>
 
+
             </LinearLayout>
+
 
 
         </LinearLayout>
