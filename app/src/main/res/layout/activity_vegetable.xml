@@ -5,73 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Vegetable">
+    tools:context="sagar.mahajan.dveg.Vegetable">
 
 
     <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
         android:id="@+id/toolbar"
-        android:background="@color/white">
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:weightSum="2.5">
-
+            android:weightSum="3">
 
 
             <ImageView
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
+                android:background="@drawable/buytfrednew"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="serif"
-                android:layout_margin="8dp"
-                android:textSize="28sp"
-                android:background="@drawable/buytf"
-                android:gravity="center"
-                android:id="@+id/name"/>
+                android:gravity="center" />
 
             <ImageView
+                android:id="@+id/basket"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="17dp"
-                android:background="@drawable/search"/>
-
-            <ImageView
-                android:id="@+id/basketo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="50dp"
-                android:layout_margin="17dp"
-                android:background="@drawable/cart"/>
-
-
+                android:layout_margin="11dp"
+                android:background="@drawable/cart"
+                android:layout_weight="2.5"
+                android:padding="50dp" />
 
 
         </LinearLayout>
 
 
-
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
+    <SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="FRESH VEGETABLES"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="#2F363F"
-        android:fontFamily="serif"
-        />
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/searchview"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="FRESH VEGETABLES"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#2F363F"
+            android:fontFamily="serif"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+
+
 
 
 

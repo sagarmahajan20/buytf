@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".Login">
+    android:background="#F7F6FF"
+    tools:context="sagar.mahajan.dveg.Login">
 
     <ImageView
         android:id="@+id/textView"
         android:layout_width="217dp"
         android:layout_height="84dp"
         android:fontFamily=""
-        android:src="@drawable/buytf"
+        android:src="@drawable/buytfrednew"
         android:textColor="#FFEB3B"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,20 +74,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email" />
 
-   <!-- <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily=""
-        android:text="Login"
-        android:background="@drawable/cborder"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />-->
+    <!-- <Button
+         android:id="@+id/loginBtn"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+         android:layout_marginTop="32dp"
+         android:layout_marginEnd="16dp"
+         android:fontFamily=""
+         android:text="Login"
+         android:background="@drawable/cborder"
+         android:textSize="13sp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/password" />-->
 
     <LinearLayout
         android:id="@+id/loginBtn"

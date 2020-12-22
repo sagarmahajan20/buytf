@@ -7,7 +7,7 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    tools:context=".Basket">
+    tools:context="sagar.mahajan.dveg.Basket">
 
 
  <RelativeLayout
@@ -65,6 +65,7 @@
 
 
      </androidx.appcompat.widget.Toolbar>
+
 
      <androidx.recyclerview.widget.RecyclerView
          android:id="@+id/recycler_view_basket"

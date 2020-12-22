@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.dveg">
+    package="sagar.mahajan.dveg">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -13,20 +13,21 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".chatbot"></activity>
-        <activity android:name=".Myorderdetail" />
-        <activity android:name=".Placeorder" />
-        <activity android:name=".UserProfile" />
-        <activity android:name=".Myorders" />
-        <activity android:name=".DetailActivity" />
-        <activity android:name=".Basket" />
-        <activity android:name=".VerifyPhoneActivity" />
-        <activity android:name=".Register" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Vegetable" />
-        <activity android:name=".Bus" />
-        <activity android:name=".SecondActivity" />
-        <activity android:name=".Login">
+        <activity android:name="sagar.mahajan.dveg.chatbot" />
+        <activity android:name="sagar.mahajan.dveg.Myorderdetail" />
+        <activity android:name="sagar.mahajan.dveg.Placeorder" />
+        <activity android:name="sagar.mahajan.dveg.UserProfile" />
+        <activity android:name="sagar.mahajan.dveg.Myorders" />
+        <activity android:name="sagar.mahajan.dveg.DetailActivity" />
+        <activity android:name="sagar.mahajan.dveg.Basket" />
+        <activity android:name="sagar.mahajan.dveg.VerifyPhoneActivity" />
+        <activity android:name="sagar.mahajan.dveg.Register" />
+        <activity android:name="sagar.mahajan.dveg.MainActivity" />
+        <activity android:name="sagar.mahajan.dveg.Vegetable" />
+        <activity android:name="sagar.mahajan.dveg.Bus" />
+        <activity android:name="sagar.mahajan.dveg.Login" />
+        <activity android:name="sagar.mahajan.dveg.SecondActivity" />
+        <activity android:name="sagar.mahajan.dveg.Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

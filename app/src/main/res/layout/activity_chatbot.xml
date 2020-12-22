@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#DAE0E2"
     android:fitsSystemWindows="true"
-    tools:context=".chatbot">
+    tools:context="sagar.mahajan.dveg.chatbot">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"

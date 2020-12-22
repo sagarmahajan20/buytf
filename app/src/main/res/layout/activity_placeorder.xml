@@ -4,55 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Placeorder">
+    tools:context="sagar.mahajan.dveg.Placeorder">
 
 
     <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
         android:id="@+id/toolbar"
-        android:background="@color/white">
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:weightSum="2.5">
-
+            android:weightSum="3">
 
 
             <ImageView
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
+                android:background="@drawable/buytfrednew"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="serif"
-                android:layout_margin="8dp"
-                android:textSize="28sp"
-                android:background="@drawable/buytf"
-                android:gravity="center"
-                android:id="@+id/name"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="17dp"
-                android:background="@drawable/search"/>
+                android:gravity="center" />
 
             <ImageView
                 android:id="@+id/basket"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="50dp"
-                android:layout_margin="17dp"
-                android:background="@drawable/notification"/>
-
-
+                android:layout_margin="11dp"
+                android:background="@drawable/cart"
+                android:layout_weight="2.5"
+                android:padding="50dp" />
 
 
         </LinearLayout>
-
 
 
     </androidx.appcompat.widget.Toolbar>
